@@ -1,7 +1,9 @@
 let { Pool } = require(`pg`);
+require(`dotenv`).config()
 
+const DATABASE_URL = process.env.DATABASE_URL
 let pool = new Pool({
-  connectionString: "postgres://postgres:8077@localhost:5432/api1",
+  connectionString: DATABASE_URL,
 });
 
 // fetch_data logic
