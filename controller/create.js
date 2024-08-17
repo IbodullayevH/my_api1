@@ -47,20 +47,6 @@ const create_phone = async (req, res) => {
   try {
     let { name, price, descripton, category_id } = req.body;
 
-    // name required
-    if (
-      name == "" ||
-      name.charCodeAt(32) ||
-      descripton == "" ||
-      price == "" ||
-      category_id == ""
-    ) {
-      return res.status(403).send({
-        success: false,
-        message: "field required",
-      });
-    }
-
     // exist category
     let [existName] = await fetch_data(
       "SELECT * FROM phones WHERE name = $1",
@@ -70,6 +56,20 @@ const create_phone = async (req, res) => {
       return res.status(403).send({
         success: false,
         message: "Already existing phone",
+      });
+    }
+
+    //  required
+    if (
+      name == "" ||
+      name.charCodeAt(32) ||
+      descripton == "" ||
+      typeof price == "string" ||
+      typeof category_id == "string"
+    ) {
+      return res.status(403).send({
+        success: false,
+        message: "a field is required or an invalid input value ",
       });
     }
 
