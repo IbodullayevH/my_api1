@@ -98,4 +98,5 @@ const create_phone = async (req, res) => {
 
 module.exports = {
   create_category,
+  create_phone
 };
