@@ -1,12 +1,12 @@
 const { Router } = require(`express`);
-const routGet = require("./get_routes");
-const routPost = require("./create_rout");
+const routRead = require("./read_routes");
+const routCreat = require("./create_rout");
 
 
 const main_rotuer = Router();
 
-main_rotuer.use(routGet);
-main_rotuer.use(routPost)
+main_rotuer.use(routRead);
+main_rotuer.use(routCreat)
 
 // export
 module.exports = main_rotuer;
