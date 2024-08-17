@@ -18,6 +18,4 @@ routGet.get("/phones/id/:id", getPhoneById);
 routGet.get("/phones/name/:name", getPhoneByname);
 
 // export routes
-module.exports = {
-  routGet,
-};
+module.exports = routGet
