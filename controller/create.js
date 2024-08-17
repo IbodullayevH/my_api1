@@ -15,7 +15,7 @@ const create_category = async (req, res) => {
 
     // exist category
     let [existName] = await fetch_data(
-      "SELECT * FROM categorys name = $1",
+      "SELECT * FROM categorys WHERE name = $1",
       name
     );
     if (existName) {
@@ -42,7 +42,6 @@ const create_category = async (req, res) => {
   }
 };
 
-
 // create phone
 const create_phone = async (req, res) => {
   try {
@@ -54,9 +53,7 @@ const create_phone = async (req, res) => {
       name.charCodeAt(32) ||
       descripton == "" ||
       price == "" ||
-      price.charCodeAt(32) ||
-      category_id == "" ||
-      category_id.charCodeAt(32)
+      category_id == ""
     ) {
       return res.status(403).send({
         success: false,
@@ -65,7 +62,10 @@ const create_phone = async (req, res) => {
     }
 
     // exist category
-    let [existName] = await fetch_data("SELECT * FROM phones name = $1", name);
+    let [existName] = await fetch_data(
+      "SELECT * FROM phones WHERE name = $1",
+      name
+    );
     if (existName) {
       return res.status(403).send({
         success: false,
@@ -91,12 +91,12 @@ const create_phone = async (req, res) => {
   } catch (error) {
     res.status(401).send({
       success: false,
-      message: "Failed to create phone",
+      message: `Failed to create phone: ${error.message}`,
     });
   }
 };
 
 module.exports = {
   create_category,
-  create_phone
+  create_phone,
 };

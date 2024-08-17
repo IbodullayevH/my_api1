@@ -1,5 +1,23 @@
 const fetch_data = require("../utils/postgres_logic");
 
+
+// get main "/"
+const getMain = async (req, res) => {
+  try {
+    
+    res.status(200).send({
+      success: true,
+      message: "Hello everyone. This is my first API"
+    });
+  } catch (error) {
+    res.status(error.status || 500).send({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+
 // get category
 const getCategory = async (req, res) => {
   try {
@@ -157,6 +175,7 @@ const getPhoneByname = async (req, res) => {
 
 // exports
 module.exports = {
+  getMain,
   getCategory,
   getCategoryById,
   getCategoryByname,
