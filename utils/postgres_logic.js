@@ -1,7 +1,7 @@
 let { Pool } = require(`pg`);
-require(`dotenv`).config()
+require(`dotenv`).config();
 
-const DATABASE_URL = process.env.DATABASE_URL
+const DATABASE_URL = process.env.DATABASE_URL;
 let pool = new Pool({
   connectionString: DATABASE_URL,
 });
@@ -12,6 +12,7 @@ const fetch_data = async (query, ...params) => {
 
   try {
     let { rows } = await client.query(query, params.length ? params : null);
+
     return rows;
   } catch (error) {
     console.error("Fetch_Data ", error);

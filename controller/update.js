@@ -18,6 +18,7 @@ const updateCategory = async (req, res) => {
       });
     }
 
+
     await fetch_data("UPDATE categorys SET name = $1 WHERE id = $2", name, id);
     let updated_categories = await fetch_data(
       "SELECT * FROM categorys WHERE id = $1",
